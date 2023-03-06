@@ -1,0 +1,4 @@
+{
+  "remappings": [ "@openzeppelin/contracts/access/=node_modules/@openzeppelin/contracts/access/", 
+  "@openzeppelin/contracts/token/ERC20/=node_modules/@openzeppelin/contracts/token/ERC20/" ]
+}
