@@ -5,12 +5,16 @@ import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 
 /**
-* @title Supplier Utility Contract
-* @author BukTrips Technologies
-* @dev Contract for managing supplier data and ERC1155 token management for utility tickets
+* @title BUK Protocol Supplier Utility Contract
+* @author BUK Technology Inc
+* @dev Contract for managing Proof-of-Stay utility NFT ERC1155 token
 */
 contract SupplierUtilityContract is AccessControl, ERC1155 {
 
+    /**
+    * @dev name of the supplier
+    */
+    string public name;
     /**
     * @dev address of the utility contract
     */
@@ -84,6 +88,7 @@ contract SupplierUtilityContract is AccessControl, ERC1155 {
     constructor(uint256 _id, string memory _name, address _factory_contract, string memory _contract_uri) ERC1155("") {
         Details.id = _id;
         Details.name = _name;
+        name = _name;
         contract_uri = _contract_uri;
         _grantRole(FACTORY_CONTRACT_ROLE, _factory_contract);
     }
@@ -119,19 +124,20 @@ contract SupplierUtilityContract is AccessControl, ERC1155 {
 
     /**
     * @dev Function to get the supplier details
-    * @return name - The name of the supplier
+    * @return _name - The name of the supplier
     */
-    function getSupplierDetails() public view returns (string memory name) {
+    function getSupplierDetails() public view returns (string memory _name) {
         return (Details.name);
     }
     
     /**
     * @dev Function to update the supplier details
-    * @param name string: The new name of the supplier
+    * @param _name string: The new name of the supplier
     * @notice This function can only be called by a contract with `SUPPLIER_CONTRACT_ROLE`
     */
-    function updateSupplierDetails(string memory name) public onlyRole(SUPPLIER_CONTRACT_ROLE) {
-        Details.name = name;
+    function updateSupplierDetails(string memory _name) public onlyRole(SUPPLIER_CONTRACT_ROLE) {
+        Details.name = _name;
+        name = _name;
         emit UpdateSupplierDetails(name);
     }
 

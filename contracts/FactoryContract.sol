@@ -11,9 +11,9 @@ import "./ITreasury.sol";
 import "./ISupplierContractUtility.sol";
 
 /**
-* @title Factory Contract
-* @author BukTrips Technologies
-* @dev Contract for managing supplier data and ERC1155 token management for active tickets
+* @title BUK Protocol Factory Contract
+* @author BUK Technology Inc
+* @dev Genesis contract for managing all operations of the BUK protocol including ERC1155 token management for room-night NFTs and underlying sub-contracts such as Supplier, Hotel, Treasury, and Marketplace.
 */
 contract BukTrips is AccessControl, ReentrancyGuard {
 

@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 
 /** 
-* @author BukTrips Technologies
+* @author BUK Technology Inc
 * @title Treasury Contract 
 */
 contract Treasury is AccessControl {

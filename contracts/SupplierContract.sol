@@ -6,12 +6,16 @@ import "@openzeppelin/contracts/access/AccessControl.sol";
 import "./ISupplierContractUtility.sol";
 
 /**
-* @title Supplier Contract
-* @author BukTrips Technologies
-* @dev Contract for managing supplier data and ERC1155 token management for active tickets
+* @title BUK Protocol Supplier Contract
+* @author BUK Technology Inc
+* @dev Contract for managing hotel room-night inventory supplier data and ERC1155 token management for room-night NFTs
 */
 contract SupplierContract is AccessControl, ERC1155 {
 
+    /**
+    * @dev name of the supplier
+    */
+    string public name;
     /**
     * @dev address of the supplier contract
     */
@@ -105,6 +109,7 @@ contract SupplierContract is AccessControl, ERC1155 {
     constructor(uint256 _id, string memory _name, address _supplier_owner, address _utility_contract, address _factory_contract, string memory _contract_uri) ERC1155("") {
         Details.id = _id;
         Details.name = _name;
+        name = _name;
         _grantRole(SUPPLIER_OWNER_ROLE, _supplier_owner);
         _grantRole(FACTORY_CONTRACT_ROLE, _factory_contract);
         _grantRole(UPDATE_CONTRACT_ROLE, _supplier_owner);
@@ -118,9 +123,9 @@ contract SupplierContract is AccessControl, ERC1155 {
     /**
     * @dev Returns the id and name of the supplier.
     * @return id - ID of the supplier.
-    * @return name - Name of the supplier.
+    * @return _name - Name of the supplier.
     */
-    function getSupplierDetails() external view returns (uint256 id, string memory name) {
+    function getSupplierDetails() external view returns (uint256 id, string memory _name) {
         return (Details.id, Details.name);
     }
 
@@ -150,6 +155,7 @@ contract SupplierContract is AccessControl, ERC1155 {
     */
     function updateSupplierDetails(string memory _name) external onlyRole(UPDATE_CONTRACT_ROLE) {
         Details.name = _name;
+        name = _name;
         ISupplierContractUtility(utility_contract).updateSupplierDetails(_name);
         emit UpdateSupplierDetails(_name);
     }

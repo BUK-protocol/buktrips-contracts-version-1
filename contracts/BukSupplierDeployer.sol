@@ -5,9 +5,9 @@ import "@openzeppelin/contracts/utils/Context.sol";
 import "./SupplierContract.sol";
 
 /**
-* @author BukTrips Technologies
-* @title Buk Supplier Deployer Contract
-*@dev Contract to deploy instances of the SupplierContract contract
+ *@author BUK Technology Inc 
+ *@title BUK Protocol Supplier Deployer Contract
+ *@dev Contract to deploy instances of the SupplierContract contract
 */
 contract BukSupplierDeployer is Context {
 
