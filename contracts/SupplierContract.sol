@@ -13,7 +13,7 @@ import "./ISupplierContractUtility.sol";
 contract SupplierContract is AccessControl, ERC1155 {
 
     /**
-    * @dev name of the supplier
+    * @dev name of the supplier contract
     */
     string public name;
     /**
@@ -99,6 +99,7 @@ contract SupplierContract is AccessControl, ERC1155 {
 
     /**
     * @dev Constructor to initialize the contract
+    * @param _contract_name Contract Name
     * @param _id Supplier ID
     * @param _name Supplier name
     * @param _supplier_owner Address of the supplier owner
@@ -106,10 +107,10 @@ contract SupplierContract is AccessControl, ERC1155 {
     * @param _factory_contract Address of the factory contract
     * @param _contract_uri Contract URI string
     */
-    constructor(uint256 _id, string memory _name, address _supplier_owner, address _utility_contract, address _factory_contract, string memory _contract_uri) ERC1155("") {
+    constructor(string memory _contract_name, uint256 _id, string memory _name, address _supplier_owner, address _utility_contract, address _factory_contract, string memory _contract_uri) ERC1155("") {
         Details.id = _id;
         Details.name = _name;
-        name = _name;
+        name = _contract_name;
         _grantRole(SUPPLIER_OWNER_ROLE, _supplier_owner);
         _grantRole(FACTORY_CONTRACT_ROLE, _factory_contract);
         _grantRole(UPDATE_CONTRACT_ROLE, _supplier_owner);
@@ -117,16 +118,6 @@ contract SupplierContract is AccessControl, ERC1155 {
         factory_contract = _factory_contract;
         utility_contract = _utility_contract;
         contract_uri = _contract_uri;
-    }
-
-
-    /**
-    * @dev Returns the id and name of the supplier.
-    * @return id - ID of the supplier.
-    * @return _name - Name of the supplier.
-    */
-    function getSupplierDetails() external view returns (uint256 id, string memory _name) {
-        return (Details.id, Details.name);
     }
 
     /**

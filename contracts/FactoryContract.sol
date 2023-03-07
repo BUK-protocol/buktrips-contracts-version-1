@@ -255,10 +255,10 @@ contract BukTrips is AccessControl, ReentrancyGuard {
     * @param _contract_uri URI of the supplier contract.
     * @notice Only admin can call this function.
     */
-    function registerSupplier(string memory _name, address _supplier_owner, string memory _contract_uri) external onlyRole(ADMIN_ROLE) {
+    function registerSupplier(string memory _contract_name, string memory _name, address _supplier_owner, string memory _contract_uri) external onlyRole(ADMIN_ROLE) {
         ++_supplierIds;
-        address utility_contract_addr = IBukSupplierUtilityDeployer(utility_deployer).deploySupplierUtility(_supplierIds,_name, _contract_uri);
-        address supplier_contract_addr = IBukSupplierDeployer(supplier_deployer).deploySupplier(_supplierIds,_name, _supplier_owner, utility_contract_addr, _contract_uri);
+        address utility_contract_addr = IBukSupplierUtilityDeployer(utility_deployer).deploySupplierUtility(_contract_name,_supplierIds,_name, _contract_uri);
+        address supplier_contract_addr = IBukSupplierDeployer(supplier_deployer).deploySupplier(_contract_name, _supplierIds,_name, _supplier_owner, utility_contract_addr, _contract_uri);
         ISupplierContractUtility(utility_contract_addr).grantSupplierRole(supplier_contract_addr);
         Suppliers[_supplierIds].id = _supplierIds;
         Suppliers[_supplierIds].status = true;

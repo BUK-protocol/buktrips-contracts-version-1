@@ -79,9 +79,9 @@ contract BukSupplierDeployer is Context {
     * @return Address of the deployed Supplier contract
     * @notice This function can only be called by factory contract
     */
-    function deploySupplier(uint256 id, string memory _name, address _supplier_owner, address _utility_contract_addr, string memory _contract_uri) public onlyFactory(_msgSender()) returns (address) {
+    function deploySupplier(string memory _contract_name, uint256 id, string memory _name, address _supplier_owner, address _utility_contract_addr, string memory _contract_uri) public onlyFactory(_msgSender()) returns (address) {
         SupplierContract supplier;
-        supplier = new SupplierContract(id, _name, _supplier_owner, _utility_contract_addr, factory_contract, _contract_uri);
+        supplier = new SupplierContract(_contract_name, id, _name, _supplier_owner, _utility_contract_addr, factory_contract, _contract_uri);
         emit SupplierDeploy(id, address(supplier));
         return address(supplier);
     }

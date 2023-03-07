@@ -2,5 +2,5 @@
 pragma solidity 0.8.9;
 
 interface IBukSupplierUtilityDeployer {
-    function deploySupplierUtility(uint256 id, string memory _name, string memory _contract_uri) external returns (address);
+    function deploySupplierUtility(string memory _contract_name, uint256 id, string memory _name, string memory _contract_uri) external returns (address);
 }

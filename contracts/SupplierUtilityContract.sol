@@ -12,7 +12,7 @@ import "@openzeppelin/contracts/access/AccessControl.sol";
 contract SupplierUtilityContract is AccessControl, ERC1155 {
 
     /**
-    * @dev name of the supplier
+    * @dev name of the supplier contract
     */
     string public name;
     /**
@@ -80,15 +80,16 @@ contract SupplierUtilityContract is AccessControl, ERC1155 {
 
     /**
     * @dev Constructor to initialize the contract
+    * @param _contract_name Contract Name
     * @param _id Supplier ID
     * @param _name Supplier name
     * @param _factory_contract Address of the factory contract
     * @param _contract_uri Contract URI string
     */
-    constructor(uint256 _id, string memory _name, address _factory_contract, string memory _contract_uri) ERC1155("") {
+    constructor(string memory _contract_name, uint256 _id, string memory _name, address _factory_contract, string memory _contract_uri) ERC1155("") {
         Details.id = _id;
         Details.name = _name;
-        name = _name;
+        name = _contract_name;
         contract_uri = _contract_uri;
         _grantRole(FACTORY_CONTRACT_ROLE, _factory_contract);
     }
@@ -121,23 +122,15 @@ contract SupplierUtilityContract is AccessControl, ERC1155 {
     function contractURI() public view returns (string memory) {
         return contract_uri;
     }
-
-    /**
-    * @dev Function to get the supplier details
-    * @return _name - The name of the supplier
-    */
-    function getSupplierDetails() public view returns (string memory _name) {
-        return (Details.name);
-    }
     
     /**
     * @dev Function to update the supplier details
     * @param _name string: The new name of the supplier
     * @notice This function can only be called by a contract with `SUPPLIER_CONTRACT_ROLE`
     */
-    function updateSupplierDetails(string memory _name) public onlyRole(SUPPLIER_CONTRACT_ROLE) {
+    function updateSupplierDetails(string memory _contract_name, string memory _name) public onlyRole(SUPPLIER_CONTRACT_ROLE) {
         Details.name = _name;
-        name = _name;
+        name = _contract_name;
         emit UpdateSupplierDetails(name);
     }
 
