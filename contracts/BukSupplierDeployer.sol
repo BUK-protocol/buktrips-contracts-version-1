@@ -14,11 +14,11 @@ contract BukSupplierDeployer is Context {
     /**
     * @dev Address of the contract's admin
     */
-    address internal admin;
+    address private admin;
     /**
     * @dev Address of the factory contract
     */
-    address internal factory_contract;
+    address private factory_contract;
 
     /**
     * @dev Event emitted when a new Supplier contract is deployed

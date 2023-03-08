@@ -13,11 +13,11 @@ contract Treasury is AccessControl {
     /**
     * @dev address currency          Address of the default currency.
     */
-    address internal currency;
+    address private currency;
     /**
     * @dev address factory_contract          Address of the factory contract.
     */
-    address internal factory_contract;
+    address private factory_contract;
 
     /** 
     * @notice - This constructor function sets the currency and the administrator of the contract.

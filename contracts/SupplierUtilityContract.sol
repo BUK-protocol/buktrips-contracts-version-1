@@ -22,7 +22,7 @@ contract SupplierUtilityContract is AccessControl, ERC1155 {
     /**
     * @dev Contract URI string
     */
-    string internal contract_uri;
+    string private contract_uri;
 
     /**
     * @dev Struct for supplier data

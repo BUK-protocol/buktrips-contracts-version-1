@@ -35,22 +35,22 @@ contract BukTrips is AccessControl, ReentrancyGuard {
     * @dev address supplier_deployer Address of the supplier deployer.
     * @dev address utility_deployer  Address of the utility deployer.
     */
-    address internal buk_wallet;
-    address internal currency;
-    address internal treasury;
+    address private buk_wallet;
+    address private currency;
+    address private treasury;
     address public supplier_deployer;
     address public utility_deployer;
     /**
     * @dev Commission charged on bookings.
     */
-    uint8 internal commission = 5;
+    uint8 private commission = 5;
 
     /**
     * @dev Counters.Counter supplierIds   Counter for supplier IDs.
     * @dev Counters.Counter bookingIds    Counter for booking IDs.
     */
-    uint256 internal _supplierIds;
-    uint256 internal _bookingIds;
+    uint256 private _supplierIds;
+    uint256 private _bookingIds;
 
     /**
     * @dev Struct for booking details.

@@ -19,15 +19,15 @@ contract SupplierContract is AccessControl, ERC1155 {
     /**
     * @dev address of the supplier contract
     */
-    address internal utility_contract;
+    address private utility_contract;
     /**
     * @dev Contract URI string
     */
-    string internal contract_uri;
+    string public contract_uri;
     /**
     * @dev address of the factory contract
     */
-    address internal factory_contract;
+    address private factory_contract;
 
     /**
     * @dev Struct for supplier data
